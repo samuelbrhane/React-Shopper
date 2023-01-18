@@ -1,0 +1,31 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .underline {
+    width: 100px;
+    background-color: rgb(142, 17, 153);
+    border: 2px solid rgb(142, 17, 153);
+    border-radius: 0.3rem;
+    margin-bottom: 0.6rem;
+    margin-top: 0.1rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+    color: rgb(6, 85, 85);
+    position: relative;
+    z-index: 3;
+  }
+  .titleCover {
+    width: 30px;
+    height: 30px;
+    padding: 1.1rem;
+    background: linear-gradient(90deg, rgba(123, 34, 54, 0.5) 20%, #fff);
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: -10px;
+    z-index: -1;
+  }
+}

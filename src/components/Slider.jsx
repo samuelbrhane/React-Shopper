@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import "./slider.scss";
+import React, { useState, useEffect } from "react";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { useEffect } from "react";
 const images = [
   "https://images.pexels.com/photos/8886963/pexels-photo-8886963.jpeg?auto=compress&cs=tinysrgb&w=1600",
   "https://images.pexels.com/photos/3865906/pexels-photo-3865906.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -37,7 +35,7 @@ const Slider = () => {
     setImageIndex(checkIndex(imageIndex + 1));
   };
   return (
-    <div className="slider">
+    <div className="h-full w-full flex overflow-x-hidden relative">
       {images.map((image, index) => {
         let position = "next";
         if (imageIndex === index) position = "active";
@@ -51,13 +49,19 @@ const Slider = () => {
             src={image}
             alt="product"
             key={index}
-            className={`${position} sliderImage`}
+            className={`${position} absolute left-0 w-full h-full opacity-0 duration-1000`}
           />
         );
       })}
-      <div className="sliderChange">
-        <BsFillArrowLeftCircleFill onClick={slideLeft} className="arrow" />
-        <BsFillArrowRightCircleFill onClick={slideRight} className="arrow" />
+      <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full flex items-center justify-between text-3xl text-[rgb(127, 208, 255)] px-4">
+        <BsFillArrowLeftCircleFill
+          onClick={slideLeft}
+          className="cursor-pointer"
+        />
+        <BsFillArrowRightCircleFill
+          onClick={slideRight}
+          className="cursor-pointer"
+        />
       </div>
     </div>
   );

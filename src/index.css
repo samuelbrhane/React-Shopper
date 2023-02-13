@@ -37,6 +37,17 @@
   .c2 {
     grid-column: 3/-1;
   }
+  .sliderImage.active {
+    @apply opacity-100 translate-x-0;
+  }
+
+  .sliderImage.prev {
+    @apply translate-x-[-100%];
+  }
+
+  .sliderImage.next {
+    @apply translate-x-[100%];
+  }
 }
 
 @keyframes slide-left {

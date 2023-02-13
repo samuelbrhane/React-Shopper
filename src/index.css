@@ -15,3 +15,38 @@
     @apply bg-black;
   }
 }
+
+@layer components {
+  .authLeft {
+    animation: slide-right 0.9s ease;
+  }
+  .authRight {
+    @apply shadow py-4 px-8 text-center;
+    animation: slide-left 0.9s ease;
+  }
+  .authInputs {
+    @apply flex flex-col gap-3;
+  }
+
+  .authInputs input {
+    @apply text-lg outline-none rounded border-2 border-[#a3c34a] py-2 px-4;
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(6rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-6rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

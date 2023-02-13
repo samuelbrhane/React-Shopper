@@ -13,7 +13,6 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { Loader, Navbar } from "../../components";
-import "./auth.css";
 
 const Auth = ({ register }) => {
   const [inputData, setInputData] = useState({
@@ -100,10 +99,10 @@ const Auth = ({ register }) => {
   return (
     <>
       <Navbar />
-      <section>
+      <section className="mt-[120px] flex flex-col-reverse items-center justify-end gap-4 md:gap-0 lg:mt-[100px] lg:justify-center lg:items-center lg:gap-10">
         {isLoading && <Loader />}
-        <div className="authLeft">
-          <img src={shop} alt="" />
+        <div className="hidden md:authLeft">
+          <img src={shop} alt="" className="h-[500px]" />
         </div>
         <div className="authRight">
           <h1> {register ? "Register" : "Login"}</h1>
@@ -137,7 +136,7 @@ const Auth = ({ register }) => {
               )}
             </div>
             <div>
-              <button type="submit" className="submitBtn">
+              <button type="submit" className="bg-[#c334b7]">
                 {register ? "Register" : "Login"}
               </button>
             </div>
@@ -145,22 +144,22 @@ const Auth = ({ register }) => {
               <div>
                 <button
                   type="button"
-                  className="googleBtn"
+                  className="bg-[#a38b23] flex items-center justify-center gap-1"
                   onClick={handleGoogleLogin}
                 >
-                  <AiOutlineGoogle className="google" /> Login With Google
+                  <AiOutlineGoogle className="text-xl" /> Login With Google
                 </button>
               </div>
             )}
 
             {register || (
-              <Link to="/reset" className="forgetPassword">
+              <Link to="/reset" className="">
                 Forget Password?
               </Link>
             )}
 
             <Link
-              className="authChange"
+              className="mt-1 text-green-400 text-lg"
               to={`${register ? "/login" : "/register"}`}
             >
               <p>

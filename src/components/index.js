@@ -4,7 +4,7 @@ import Loader from "./Loader";
 import Slider from "./Slider";
 import ProductCard from "./ProductCard.jsx";
 import Categories from "./categories/Categories";
-import Title from "./title/Title";
+import Title from "./Title";
 import Filters from "./Filters";
 import CategoryProducts from "./CategoryProducts";
 

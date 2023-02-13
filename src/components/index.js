@@ -1,5 +1,5 @@
 import Navbar from "./navbar/Navbar";
-import Footer from "./footer/Footer";
+import Footer from "./Footer";
 import Loader from "./loader/Loader";
 import Slider from "./slider/Slider";
 import ProductCard from "./productCard/ProductCard.jsx";

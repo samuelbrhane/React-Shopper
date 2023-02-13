@@ -1,13 +1,10 @@
-import React from "react";
-import "./footer.scss";
-
 const Footer = ({ content }) => {
   return (
-    <div className="footer">
+    <div className="z-30 mt-4">
       {content && (
-        <div className="footerContent">
+        <div className="pb-2 pt-6 grid grid-cols-4 gap-6 footer px-8 ">
           <div className="categories">
-            <h3>Categories</h3>
+            <h3 className="mb-1">Categories</h3>
             <p>Special Sell</p>
             <p>New Arrival</p>
             <p>Men's</p>
@@ -16,7 +13,7 @@ const Footer = ({ content }) => {
             <p>Accessories</p>
           </div>
           <div className="links">
-            <h3>Links</h3>
+            <h3 className="mb-1">Links</h3>
             <p>FAQ</p>
             <p>Pages</p>
             <p>Stores</p>
@@ -24,7 +21,7 @@ const Footer = ({ content }) => {
             <p>Cookies</p>
           </div>
           <div>
-            <h3>About</h3>
+            <h3 className="mb-1">About</h3>
             <p className="about">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Necessitatibus dolor ut magni? Voluptates, neque ipsam
@@ -35,7 +32,7 @@ const Footer = ({ content }) => {
             </p>
           </div>
           <div>
-            <h3>Contact</h3>
+            <h3 className="mb-1">Contact</h3>
             <p className="contact">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Temporibus quisquam labore vel consequatur itaque a numquam
@@ -47,7 +44,9 @@ const Footer = ({ content }) => {
           </div>
         </div>
       )}
-      <h4>&#169; Copyright 2022 Samuel Brhane</h4>
+      <h4 className="bg-blue-500 py-4 text-center text-white">
+        &#169; Copyright 2022 Samuel Brhane
+      </h4>
     </div>
   );
 };

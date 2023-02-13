@@ -1,11 +1,11 @@
-import Home from "./home/Home";
-import Orders from "./orders/Orders";
-import Cart from "./cart/Cart";
-import Auth from "./auth/Auth";
-import Login from "./auth/Login";
-import Register from "./auth/Register";
-import Reset from "./auth/Reset.jsx";
-import Product from "./product/Product";
-import Category from "./category/Category";
+import Home from ".";
+import Orders from ".";
+import Cart from ".";
+import Auth from ".";
+import Login from ".";
+import Register from ".";
+import Reset from ".";
+import Product from ".";
+import Category from ".";
 
 export { Home, Orders, Cart, Auth, Register, Login, Reset, Product, Category };

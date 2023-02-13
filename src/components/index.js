@@ -5,8 +5,8 @@ import Slider from "./slider/Slider";
 import ProductCard from "./productCard/ProductCard.jsx";
 import Categories from "./categories/Categories";
 import Title from "./title/Title";
-import Filters from "./filters/Filters";
-import CategoryProducts from "./categoryProducts/CategoryProducts";
+import Filters from "./Filters";
+import CategoryProducts from "./CategoryProducts";
 
 export {
   Navbar,

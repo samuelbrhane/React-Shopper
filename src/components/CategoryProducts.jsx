@@ -1,8 +1,7 @@
 import React from "react";
-import { Title } from "../";
-import "./categoryProducts.scss";
-import { data } from "../../data";
-import { ProductCard } from "../";
+import { Title } from ".";
+import { data } from "../data";
+import { ProductCard } from ".";
 
 const CategoryProducts = () => {
   return (

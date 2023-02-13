@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Footer, Title } from "../components";
-import "./product.scss";
 import { data } from "../data";
 import { BsArrowBarRight } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";

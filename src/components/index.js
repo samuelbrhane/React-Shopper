@@ -2,7 +2,7 @@ import Navbar from "./navbar/Navbar";
 import Footer from "./Footer";
 import Loader from "./Loader";
 import Slider from "./slider/Slider";
-import ProductCard from "./productCard/ProductCard.jsx";
+import ProductCard from "./ProductCard.jsx";
 import Categories from "./categories/Categories";
 import Title from "./title/Title";
 import Filters from "./Filters";

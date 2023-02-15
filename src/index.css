@@ -17,13 +17,6 @@
 }
 
 @layer components {
-  .authLeft {
-    animation: slide-right 0.9s ease;
-  }
-  .authRight {
-    @apply shadow py-4 px-8 text-center;
-    animation: slide-left 0.9s ease;
-  }
   .authInputs {
     @apply flex flex-col gap-3;
   }
@@ -50,6 +43,13 @@
   .menuContents.show {
     @apply z-10 duration-1000 top-[60px] md:top-[70px] py-4 px-8 bottom-0 right-0 fixed bg-[#292d2b];
   }
+}
+
+.authLeft {
+  animation: slide-right 0.9s ease;
+}
+.authRight {
+  animation: slide-left 0.9s ease;
 }
 
 @keyframes slide-left {

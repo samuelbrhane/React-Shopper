@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import shop from "../../assets/shopping.jpg";
-import { AiOutlineGoogle } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toastOption } from "../../utils/toastOptions";
@@ -12,7 +12,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { auth } from "../../firebase/config";
-import { Loader, Navbar } from "../../components";
+import { Loader, Navbar, Title } from "../../components";
 
 const Auth = ({ register }) => {
   const [inputData, setInputData] = useState({
@@ -99,14 +99,15 @@ const Auth = ({ register }) => {
   return (
     <>
       <Navbar />
-      <section className="mt-[120px] flex flex-col-reverse items-center justify-end gap-4 md:gap-0 lg:mt-[100px] lg:justify-center lg:items-center lg:gap-10">
+      <section className="mt-[110px] flex flex-col mb-10 md:flex-row justify-center items-center gap-24">
         {isLoading && <Loader />}
-        <div className="hidden md:authLeft">
-          <img src={shop} alt="" className="h-[500px]" />
+        <div className="authLeft hidden md:inline">
+          <img src={shop} alt="shopping" className="h-[500px]" />
         </div>
         <div className="authRight">
-          <h1> {register ? "Register" : "Login"}</h1>
-          <form onSubmit={handleSubmit}>
+          <Title title={register ? "Register" : "Login"} />
+
+          <form onSubmit={handleSubmit} className="mt-4 w-[300px]">
             <div className="authInputs">
               <input
                 type="email"
@@ -135,21 +136,24 @@ const Auth = ({ register }) => {
                 />
               )}
             </div>
-            <div>
-              <button type="submit" className="bg-[#c334b7]">
-                {register ? "Register" : "Login"}
-              </button>
-            </div>
+
+            <button
+              type="submit"
+              className={`${
+                register ? "bg-[#616a0f]" : "bg-[#22ac13]"
+              } text-white font-bold rounded w-full my-2 py-2`}
+            >
+              {register ? "Register" : "Login"}
+            </button>
+
             {register || (
-              <div>
-                <button
-                  type="button"
-                  className="bg-[#a38b23] flex items-center justify-center gap-1"
-                  onClick={handleGoogleLogin}
-                >
-                  <AiOutlineGoogle className="text-xl" /> Login With Google
-                </button>
-              </div>
+              <button
+                type="button"
+                className="bg-blue-600 w-full text-white py-2 rounded font-bold flex items-center justify-center gap-1"
+                onClick={handleGoogleLogin}
+              >
+                <FcGoogle className="text-xl" /> Login With Google
+              </button>
             )}
 
             {register || (
@@ -158,16 +162,24 @@ const Auth = ({ register }) => {
               </Link>
             )}
 
-            <Link
-              className="mt-1 text-green-400 text-lg"
-              to={`${register ? "/login" : "/register"}`}
-            >
-              <p>
-                {register
-                  ? "Already have an account? Login "
-                  : "Don't have an account? Register"}
-              </p>
-            </Link>
+            <div className="text-sm">
+              {register ? (
+                <p>
+                  Already have an account?{" "}
+                  <Link to="/login" className="text-[#22ac13]">
+                    Login
+                  </Link>
+                </p>
+              ) : (
+                <p>
+                  Don't have an account?{" "}
+                  <Link to="/register" className="text-[#616a0f]">
+                    Register
+                  </Link>
+                </p>
+              )}
+              {}
+            </div>
           </form>
         </div>
       </section>

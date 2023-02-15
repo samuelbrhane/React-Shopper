@@ -41,7 +41,7 @@ const RightBtns = () => {
       ) : (
         <div className="flex flex-col items-center gap-3 md:flex-row md:gap-2">
           <Link
-            className="mt-2 py-2 w-[90px] md:w-[80px] lg:w-[100px] text-center text-white rounded text-lg bg-[#3cec4e]"
+            className="mt-2 py-2 w-[90px] md:w-[80px] lg:w-[100px] text-center text-white rounded text-lg bg-[#22ac13]"
             to="/login"
           >
             Login

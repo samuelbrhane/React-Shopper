@@ -14,12 +14,11 @@ import { FaTwitter, FaTelegram, FaGoogle } from "react-icons/fa";
 
 const Home = () => {
   return (
-    <section className="home">
-      <div className="h-[100vh] absolute top-0 w-full">
-        <Navbar />
-        <Slider />
-      </div>
-      <div className="mt-[90vh] w-full">
+    <section>
+      <Navbar />
+      <Slider />
+
+      {/* <div className="mt-[90vh] w-full">
         <div className="w-full h-[400px] py-4 px-16 flex mt-4 flex-col items-center justify-center ">
           <Title title="30% Discount Offer" />
           <img src={discount} alt="discount" />
@@ -63,7 +62,7 @@ const Home = () => {
           </div>
         </div>
         <Footer content={true} />
-      </div>
+      </div> */}
     </section>
   );
 };

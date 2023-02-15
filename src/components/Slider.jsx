@@ -34,8 +34,9 @@ const Slider = () => {
   const slideRight = () => {
     setImageIndex(checkIndex(imageIndex + 1));
   };
+
   return (
-    <div className="h-full w-full flex overflow-x-hidden relative">
+    <div className="h-[calc(100vh-60px)] md:h-[calc(100vh-70px)] mt-[60px] md:mt-[70px] w-full flex overflow-hidden relative">
       {images.map((image, index) => {
         let position = "next";
         if (imageIndex === index) position = "active";
@@ -49,7 +50,7 @@ const Slider = () => {
             src={image}
             alt="product"
             key={index}
-            className={`${position} absolute left-0 w-full h-full opacity-0 duration-1000`}
+            className={`${position} sliderImage absolute left-0 w-full h-full opacity-0 duration-1000`}
           />
         );
       })}

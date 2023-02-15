@@ -22,9 +22,10 @@ const NavLinks = ({ direction }) => (
             isActive
               ? {
                   fontWeight: "bold",
-                  backgroundColor: "#22332a",
+                  backgroundColor: "#f2f3ff",
                   padding: "4px",
                   borderRadius: "2px",
+                  color: "#000",
                 }
               : undefined
           }

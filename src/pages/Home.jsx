@@ -40,32 +40,39 @@ const Home = () => {
       {/* Categories */}
       <Categories />
 
-      {/* <div className="p-4">
-        <Title title="Featured Products" />
-        <div className="flex items-center justify-center gap-6 flex-wrap">
+      {/* Featured Products */}
+      <div className="mt-6 md:mt-8">
+        <Title title="Featured Products" underline={true} />
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 md:gap-6">
           {data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      </div> */}
-      {/* <div className="flex item-center justify-between py-4 px-12 bg-black uppercase text-white">
-        <p className="text-lg">stay in touch with us</p>
-        <div className="flex items-center">
+      </div>
+
+      {/* Join Us */}
+      <div className="flex item-center justify-between md:px-8 lg:px-12 py-5 md:py-7 px-2 bg-black uppercase text-white gap-4">
+        <p className="text-[11px] md:text-lg whitespace-nowrap flex items-center">
+          stay in touch
+        </p>
+        <div className="flex items-center md:flex-grow md:ml-12 md:justify-end">
           <input
             type="text"
             placeholder="Enter Your Email"
-            className="h-[30px] outline-none w-[280px] border-none"
+            className="outline-none border-none py-1 px-2 md:w-[60%]"
           />
-          <button className="h-[30px] px-4 uppercase">join us</button>
+          <button className="text-[10px] h-full md:text-lg whitespace-nowrap bg-gray-500 px-4 uppercase">
+            join us
+          </button>
         </div>
-        <div className="flex items-center gap-4">
+      </div>
+      {/* <div className="flex items-center gap-4">
           <BsFacebook />
           <BsInstagram />
           <FaGoogle />
           <FaTelegram />
           <FaTwitter />
-        </div>
-      </div> */}
+        </div>  */}
       {/* <Footer content={true} /> */}
     </section>
   );

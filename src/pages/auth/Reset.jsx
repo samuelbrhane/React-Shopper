@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toastOption } from "../../utils/toastOptions";
 import { auth } from "../../firebase/config";
 import { toast, ToastContainer } from "react-toastify";
-import { Loader } from "../../components";
+import { Loader, Navbar, Title } from "../../components";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 const Reset = () => {
@@ -28,33 +28,41 @@ const Reset = () => {
   };
   return (
     <>
-      <div>
+      <Navbar />
+      <div className="flex justify-center md:gap-24 mt-[120px] md:items-center">
         {isLoading && Loader}
-        <div className="hidden md:authLeft">
-          <h1> Reset Password</h1>
-          <form>
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+        <div className="authLeft">
+          <Title title="Reset Password" underline={true} />
+          <form className="mt-2 w-[300px]">
+            <div className="authInputs">
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
             <button
               type="submit"
-              className="bg-[#c334b7]"
+              className="bg-[#c334b7] w-full py-2 rounded mt-2 font-bold text-white"
               onClick={handleResetPassword}
             >
               Reset
             </button>
           </form>
-          <div>
-            <Link to="/login">-- Login</Link>
-            <Link to="/register">Register --</Link>
+          <div className="flex px-2 justify-between mt-1">
+            <Link to="/login" className="text-[#22ac13]">
+              -- Login
+            </Link>
+            <Link to="/register" className="text-[#616a0f]">
+              Register --
+            </Link>
           </div>
         </div>
-        <div>
-          <img src={forget} alt="forget" />
+        <div className="authRight hidden md:inline">
+          <img src={forget} alt="forget" className="h-[500px]" />
         </div>
       </div>
       <ToastContainer />

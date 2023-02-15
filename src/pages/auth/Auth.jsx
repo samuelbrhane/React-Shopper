@@ -157,7 +157,7 @@ const Auth = ({ register }) => {
             )}
 
             {register || (
-              <Link to="/reset" className="">
+              <Link to="/reset" className="text-[#c334b7] text-sm">
                 Forget Password?
               </Link>
             )}

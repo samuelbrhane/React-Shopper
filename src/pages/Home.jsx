@@ -18,12 +18,12 @@ const Home = () => {
       <Navbar />
       <Slider />
 
-      {/* <div className="mt-[90vh] w-full">
-        <div className="w-full h-[400px] py-4 px-16 flex mt-4 flex-col items-center justify-center ">
-          <Title title="30% Discount Offer" />
-          <img src={discount} alt="discount" />
-        </div>
-        <div className="p-4">
+      <div className="w-full mt-10 px-4 flex flex-col items-center ">
+        <Title title="30% Discount Offer" underline={true} />
+        <img src={discount} alt="discount" className="mt-2" />
+      </div>
+
+      {/* <div className="p-4">
           <Title
             title="Trending Products"
             className="flex items-center justify-center flex-col mb-2"
@@ -61,8 +61,7 @@ const Home = () => {
             <FaTwitter />
           </div>
         </div>
-        <Footer content={true} />
-      </div> */}
+        <Footer content={true} /> */}
     </section>
   );
 };

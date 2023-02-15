@@ -11,7 +11,7 @@ const links = [
 ];
 
 const NavLinks = () => (
-  <div className="navLinks">
+  <div className="flex items-center md:gap-5 gap:3 text-[14px]">
     {links.map((link, index) => {
       return (
         <NavLink

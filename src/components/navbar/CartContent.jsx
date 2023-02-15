@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import "./navbar.scss";
 
 const CartContent = () => (
   <NavLink
@@ -11,7 +10,7 @@ const CartContent = () => (
   >
     <p>Cart </p>
     <FaShoppingCart />
-    <p className="cartAmount">1</p>
+    <p className="absolute top-[-5px] right-[-10px]">1</p>
   </NavLink>
 );
 

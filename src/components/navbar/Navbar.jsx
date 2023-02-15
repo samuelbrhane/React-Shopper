@@ -28,27 +28,27 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="navContainer">
-        <div className="navLeft">
-          <div className="navLogo">
-            <h1 className="logoText">Shoppers</h1>
-          </div>
+      <div className="px-4 mt-1 flex space-between items-center tex-white">
+        <div>
+          <h1 className="text-xl md:text-2xl">Shoppers</h1>
         </div>
-        <div className="navCenter">
+        <div className="hidden md:inline">
           <NavLinks />
         </div>
-        <div className="navRight">
+        <div className="hidden md:inline">
           <RightBtns />
         </div>
-        <div className="menu">
-          <div className="menuContainer">
+        <div className="md:hidden">
+          <div className="flex text-white sm:gap-5 sm:font-xl gap-3 text-lg">
             <CartContent />
             <HiMenuAlt3
-              className="menuIcon"
+              className="z-40 text-2xl cursor-pointer text-[#06235c]"
               onClick={() => setShowMenu(!showMenu)}
             />
           </div>
-          {showMenu && <div className="menuShade"></div>}
+          {showMenu && (
+            <div className="z-30 fixed top-0 left-0 bottom-0 right-0 bg-[rgba(0,0,0,0.2)]"></div>
+          )}
           <div className={`${showMenu ? "menuContents show" : "menuContents"}`}>
             <NavLinks cartContent={false} />
             <RightBtns />

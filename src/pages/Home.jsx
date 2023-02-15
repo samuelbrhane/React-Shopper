@@ -15,15 +15,20 @@ import { FaTwitter, FaTelegram, FaGoogle } from "react-icons/fa";
 const Home = () => {
   return (
     <section>
+      {/* Navbar */}
       <Navbar />
+
+      {/* Slider */}
       <Slider />
 
+      {/* Discount */}
       <div className="w-full mt-6 md:mt-8 px-4 flex flex-col items-center ">
         <Title title="30% Discount Offer" underline={true} />
         <img src={discount} alt="discount" className="mt-2" />
       </div>
 
-      <div className="p-4 mt-6 md:mt-8">
+      {/* Trending Products */}
+      <div className="mt-6 md:mt-8">
         <Title title="Trending Products" underline={true} />
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 md:gap-6">
           {data.map((product) => (
@@ -31,7 +36,10 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {/* <Categories /> */}
+
+      {/* Categories */}
+      <Categories />
+
       {/* <div className="p-4">
         <Title title="Featured Products" />
         <div className="flex items-center justify-center gap-6 flex-wrap">

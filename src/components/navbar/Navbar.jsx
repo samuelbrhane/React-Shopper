@@ -27,10 +27,10 @@ const Navbar = () => {
   }, [dispatch]);
 
   return (
-    <nav className="z-[100] px-2 md:px-6 lg:px-12 fixed top-0 left-0 right-0 h-[60px] md:h-[70px] flex justify-between items-center text-white bg-blue-400">
+    <nav className="z-[100] px-2 md:px-4 lg:px-12 fixed top-0 left-0 right-0 h-[60px] md:h-[70px] flex justify-between items-center text-white bg-blue-400">
       <Link
         to="/"
-        className="text-2xl md:text-2xl lg:text-3xl font-bold md:mr-2"
+        className="text-2xl md:text-xl lg:text-3xl font-bold md:mr-2"
       >
         Shoppers
       </Link>

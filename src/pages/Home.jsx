@@ -9,8 +9,6 @@ import {
 } from "../components";
 import discount from "../assets/discountOffer.jpg";
 import { data } from "../data";
-import { BsFacebook, BsInstagram } from "react-icons/bs";
-import { FaTwitter, FaTelegram, FaGoogle } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -30,7 +28,7 @@ const Home = () => {
       {/* Trending Products */}
       <div className="mt-6 md:mt-8">
         <Title title="Trending Products" underline={true} />
-        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 md:gap-6">
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 md:gap-6 px-4">
           {data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -43,7 +41,7 @@ const Home = () => {
       {/* Featured Products */}
       <div className="mt-6 md:mt-8">
         <Title title="Featured Products" underline={true} />
-        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 md:gap-6">
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 md:gap-6 px-4">
           {data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -66,14 +64,8 @@ const Home = () => {
           </button>
         </div>
       </div>
-      {/* <div className="flex items-center gap-4">
-          <BsFacebook />
-          <BsInstagram />
-          <FaGoogle />
-          <FaTelegram />
-          <FaTwitter />
-        </div>  */}
-      {/* <Footer content={true} /> */}
+
+      <Footer content={true} />
     </section>
   );
 };

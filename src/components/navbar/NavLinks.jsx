@@ -13,7 +13,7 @@ const NavLinks = ({ direction }) => (
   <div
     className={`flex items-center ${
       direction && "flex-col gap-6 mb-4"
-    } md:gap-5 gap:3 text-[14px]`}
+    } md:gap-3 text-[14px]`}
   >
     {links.map((link, index) => {
       return (

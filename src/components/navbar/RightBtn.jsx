@@ -32,7 +32,7 @@ const RightBtns = () => {
         <div className="flex flex-col items-center gap-3 md:flex-row md:gap-2">
           <p>{userEmail}</p>
           <button
-            className="mt-2 py-2 w-[90px] text-white rounded text-lg bg-[#6e4b08]"
+            className="mt-2 py-2 w-[90px] md:w-[80px] lg:w-[100px] text-white rounded text-lg bg-[#6e4b08]"
             onClick={handleLogout}
           >
             Logout
@@ -41,7 +41,7 @@ const RightBtns = () => {
       ) : (
         <div className="flex flex-col items-center gap-3 md:flex-row md:gap-2">
           <Link
-            className="mt-2 py-2 w-[90px] text-center text-white rounded text-lg bg-[#3cec4e]"
+            className="mt-2 py-2 w-[90px] md:w-[80px] lg:w-[100px] text-center text-white rounded text-lg bg-[#3cec4e]"
             to="/login"
           >
             Login

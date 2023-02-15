@@ -48,21 +48,12 @@
   .sliderImage.next {
     @apply translate-x-[100%];
   }
-  .cartLink {
-    @apply flex items-center gap-1 relative text-white text-lg mt-4;
-  }
-  .link.active {
-    @apply text-black;
-  }
 
-  .link {
-    @apply text-white hover:text-black;
-  }
   .menuContents {
-    @apply duration-1000 right-[-999px] fixed;
+    @apply duration-[3s] top-[60px] md:top-[70px] bottom-0 right-[-999px] fixed md:hidden;
   }
   .menuContents.show {
-    @apply z-10 duration-500 top-[60px] py-4 px-8 bottom-0 right-0 fixed bg-[#141111];
+    @apply z-10 duration-1000 top-[60px] md:top-[70px] py-4 px-8 bottom-0 right-0 fixed bg-[#292d2b];
   }
 }
 

@@ -7,6 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { ACTIVE_USER } from "../../redux/slice/authSlice";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -26,33 +27,37 @@ const Navbar = () => {
   }, [dispatch]);
 
   return (
-    <nav>
-      <div className="px-4 mt-1 flex space-between items-center tex-white">
-        <div>
-          <h1 className="text-xl md:text-2xl">Shoppers</h1>
+    <nav className="z-[100] px-2 md:px-6 lg:px-12 fixed top-0 left-0 right-0 h-[60px] md:h-[70px] flex justify-between items-center text-white bg-blue-400">
+      <Link
+        to="/"
+        className="text-2xl md:text-2xl lg:text-3xl font-bold md:mr-2"
+      >
+        Shoppers
+      </Link>
+
+      <div className="md:hidden">
+        <CartContent />
+      </div>
+
+      <HiMenuAlt3
+        className="z-40 text-2xl cursor-pointer md:hidden"
+        onClick={() => setShowMenu(!showMenu)}
+      />
+
+      <div className={`${showMenu ? "menuContents show" : "menuContents"}`}>
+        <NavLinks direction="row" />
+        <RightBtns />
+      </div>
+
+      <div className="hidden md:flex items-center">
+        <NavLinks />
+      </div>
+      <div className="hidden md:flex items-center">
+        <div className="md:mr-6 lg:mr-10">
+          <CartContent />
         </div>
-        <div className="hidden md:inline">
-          <NavLinks />
-        </div>
-        <div className="hidden md:inline">
-          <RightBtns />
-        </div>
-        <div className="md:hidden">
-          <div className="flex text-white sm:gap-5 sm:font-xl gap-3 text-lg">
-            <CartContent />
-            <HiMenuAlt3
-              className="z-40 text-2xl cursor-pointer text-[#06235c]"
-              onClick={() => setShowMenu(!showMenu)}
-            />
-          </div>
-          {showMenu && (
-            <div className="z-30 fixed top-0 left-0 bottom-0 right-0 bg-[rgba(0,0,0,0.2)]"></div>
-          )}
-          <div className={`${showMenu ? "menuContents show" : "menuContents"}`}>
-            <NavLinks cartContent={false} />
-            <RightBtns />
-          </div>
-        </div>
+
+        <RightBtns />
       </div>
     </nav>
   );

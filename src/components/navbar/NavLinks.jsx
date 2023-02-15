@@ -9,13 +9,27 @@ const links = [
   "Accessories",
 ];
 
-const NavLinks = () => (
-  <div className="flex items-center md:gap-5 gap:3 text-[14px]">
+const NavLinks = ({ direction }) => (
+  <div
+    className={`flex items-center ${
+      direction && "flex-col gap-6 mb-4"
+    } md:gap-5 gap:3 text-[14px]`}
+  >
     {links.map((link, index) => {
       return (
         <NavLink
+          style={({ isActive }) =>
+            isActive
+              ? {
+                  fontWeight: "bold",
+                  backgroundColor: "#22332a",
+                  padding: "4px",
+                  borderRadius: "2px",
+                }
+              : undefined
+          }
           to={`${link === "Home" ? "/" : "/category/" + index}`}
-          className={({ isActive }) => (isActive ? "link active" : "link")}
+          className="whitespace-nowrap md:text-[12px] lg:text-sm"
           key={index}
         >
           {link}

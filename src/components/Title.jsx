@@ -6,7 +6,7 @@ const Title = ({ title, underline }) => {
         <span className="p-4 bg-gradient-to-l from-blue-600 to-green-200 rounded-full absolute top-[-3px] left-[-10px] -z-10"></span>
       </div>
       {underline && (
-        <div className="w-[100px] bg-[rgb(142, 17, 153)] border-2 border-[rgb(142, 17, 153)] rounded-sm mb-2 mt-1"></div>
+        <div className="w-[140px] bg-[rgb(142, 17, 153)] border-2 border-[rgb(142, 17, 153)] rounded-sm mb-2 mt-2"></div>
       )}
     </div>
   );

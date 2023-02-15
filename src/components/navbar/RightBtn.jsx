@@ -3,7 +3,6 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./navbar.scss";
 import { toastOption } from "../../utils/toastOptions";
 import { useDispatch } from "react-redux";
 import { USER_LOGOUT } from "../../redux/slice/authSlice";

@@ -7,7 +7,7 @@ import {
   Title,
   Footer,
 } from "../components";
-import discount from "../../assets/discountOffer.jpg";
+import discount from "../assets/discountOffer.jpg";
 import { data } from "../data";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { FaTwitter, FaTelegram, FaGoogle } from "react-icons/fa";

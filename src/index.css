@@ -8,7 +8,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-[rgb(228, 76, 241)];
+    @apply bg-[#231234];
   }
 
   ::-webkit-scrollbar-track {
@@ -59,7 +59,7 @@
     @apply text-white hover:text-black;
   }
   .menuContents {
-    @apply duration-2000 right-[-999px] fixed;
+    @apply duration-1000 right-[-999px] fixed;
   }
   .menuContents.show {
     @apply z-10 duration-500 top-[60px] py-4 px-8 bottom-0 right-0 fixed bg-[#141111];

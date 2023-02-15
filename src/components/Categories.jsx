@@ -1,5 +1,4 @@
 import { Title } from ".";
-import "./categories.scss";
 import { data } from "../categoriesData";
 
 const Categories = () => {
@@ -10,7 +9,7 @@ const Categories = () => {
         {data.map((category) => {
           const { name, image, id } = category;
           return (
-            <div className={`relative c${id}`}>
+            <div className={`relative c${id}`} key={id}>
               <img
                 src={image}
                 alt=""

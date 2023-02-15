@@ -4,7 +4,6 @@ import RightBtns from "./RightBtn";
 import NavLinks from "./NavLinks";
 import CartContent from "./CartContent";
 import { onAuthStateChanged } from "firebase/auth";
-import "./navbar.scss";
 import { auth } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { ACTIVE_USER } from "../../redux/slice/authSlice";

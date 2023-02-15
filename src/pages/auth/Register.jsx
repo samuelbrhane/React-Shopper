@@ -1,4 +1,4 @@
-import { Auth } from "./";
+import Auth from "./Auth";
 
 const Register = () => {
   return <Auth register={true} />;

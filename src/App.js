@@ -1,16 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import {
-  Home,
-  Orders,
-  Cart,
-  Login,
-  Register,
-  Reset,
-  Category,
-  Product,
-} from "./pages";
+import { Home, Orders, Cart, Category, Product } from "./pages";
+import { Login, Reset, Register } from "./pages/auth";
 
 const App = () => {
   return (

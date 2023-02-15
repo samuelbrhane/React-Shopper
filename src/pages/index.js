@@ -1,7 +1,7 @@
-import Home from ".";
-import Orders from ".";
-import Cart from ".";
-import Product from ".";
-import Category from ".";
+import Home from "./Home";
+import Orders from "./Orders";
+import Cart from "./Cart";
+import Product from "./Product";
+import Category from "./Category";
 
 export { Home, Orders, Cart, Product, Category };

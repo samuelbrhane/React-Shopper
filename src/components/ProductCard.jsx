@@ -2,7 +2,7 @@ const ProductCard = ({ product }) => {
   const { image, name, oldPrice, newPrice } = product;
   return (
     <div className="flex justify-center">
-      <div className="w-[280px]">
+      <div className="w-full">
         <div className="w-full h-[350px] relative group">
           <img
             src={image[0]}

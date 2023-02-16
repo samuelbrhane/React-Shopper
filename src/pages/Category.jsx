@@ -3,19 +3,13 @@ import { Navbar, Footer, Filters, CategoryProducts } from "../components";
 
 const Category = () => {
   return (
-    <div className="category">
+    <div className="">
       <Navbar />
-      <div className="mt-[80px]">
-        <div className="flex px-8">
-          <div className="w-[20%]">
-            <Filters />
-          </div>
-          <div className="w-[80%] min-h-[80vh]">
-            <CategoryProducts />
-          </div>
-        </div>
-        <Footer />
+      <div className="mt-[60px] md:mt-[70px] pt-4 flex flex-col gap-5 md:flex-row px-4  bg-white">
+        <Filters />
+        <CategoryProducts />
       </div>
+      <Footer />
     </div>
   );
 };

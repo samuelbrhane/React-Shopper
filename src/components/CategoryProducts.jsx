@@ -5,7 +5,7 @@ import { ProductCard } from ".";
 
 const CategoryProducts = () => {
   return (
-    <div className="bg-white w-full md:ml-[255px] mt-4 md:mt-0 md:border-l-[1px] pl-4">
+    <div className="w-full md:ml-[255px] mt-4 md:mt-0 md:border-l-[1px] pl-4 bg-white md:min-h-[calc(100vh-150px)]">
       <div className="mt-4 hidden md:inline bg-green-500">
         <img
           src="https://images.pexels.com/photos/3839432/pexels-photo-3839432.jpeg?auto=compress&cs=tinysrgb&w=1600"

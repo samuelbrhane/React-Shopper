@@ -1,7 +1,15 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Home, Orders, Cart, Category, Product } from "./pages";
+import {
+  Home,
+  Orders,
+  Cart,
+  Category,
+  Product,
+  AdminLogin,
+  Dashboard,
+} from "./pages";
 import { Login, Reset, Register } from "./pages/auth";
 
 const App = () => {
@@ -16,6 +24,10 @@ const App = () => {
         <Route path="/reset" element={<Reset />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/category/:id" element={<Category />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        {/* <Route path="/profile" element={<ProtectRoute />}>  
+          </Route> */}
       </Routes>
     </BrowserRouter>
   );

@@ -3,14 +3,13 @@ import { Navbar, Footer, Title } from "../components";
 import { data } from "../data";
 import { BsArrowBarRight } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
-import { GiSelfLove } from "react-icons/gi";
 
 const Product = () => {
   return (
     <div>
       <Navbar />
       <div className="mt-[80px] md:mt-[90px] flex flex-col lg:flex-row px-4 lg:gap-4 mb-6">
-        <div className="flex mb-4 gap-4 lg:w-[55%]">
+        <div className="flex mb-4 gap-4 lg:w-[55%] lg:h-[calc(85vh)]">
           <div className="w-[40%] grid grid-rows-2 gap-4">
             <img
               src={`${data[5].image[0]}`}
@@ -58,12 +57,10 @@ const Product = () => {
             <p className="pt-1 text-lg">1</p>
             <button className="px-1 text-blue-500 text-xl rounded-sm">+</button>
           </div>
-          <button className="mt-2 py-1 px-2 bg-blue-400 text-white rounded-sm flex items-center gap-2 uppercase text-lg">
-            <FaShoppingCart /> Add to cart
+          <button className="mt-2 py-1 px-2 bg-blue-400 text-white font-bold rounded flex items-center gap-2 text-lg">
+            <FaShoppingCart /> Add to Cart
           </button>
-          <button className="mt-2 bg-transparent flex items-center gap-1 uppercase mf-1 text-blue-400">
-            <GiSelfLove /> Add to wishlist
-          </button>
+
           <div className="mt-4 text-lg">
             <p>
               Vendor: <span className="font-light">Polo</span>

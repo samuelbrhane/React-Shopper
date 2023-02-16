@@ -1,11 +1,11 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB4at0dSmd05tni02cb8oX6pT3SQFn1Txc",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "shoppers-6b54a.firebaseapp.com",
   projectId: "shoppers-6b54a",
   storageBucket: "shoppers-6b54a.appspot.com",
@@ -14,9 +14,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
-const database = getFirestore(app);
+const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { firebaseConfig, app, auth, database, storage };
+export { firebaseConfig, app, auth, db, storage };

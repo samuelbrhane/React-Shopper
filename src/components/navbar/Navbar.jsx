@@ -8,26 +8,24 @@ import { auth } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { ACTIVE_USER } from "../../redux/slice/authSlice";
 import { Link } from "react-router-dom";
+import Loader from "../Loader";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(
-          ACTIVE_USER({
-            userEmail: user.email,
-            userId: user.uid,
-          })
-        );
-      }
+      if (user) dispatch(ACTIVE_USER({ email: user.email }));
+      setLoading(false);
     });
   }, [dispatch]);
 
+  if (loading) return <Loader />;
+
   return (
-    <nav className="z-[100] px-2 md:px-4 lg:px-12 fixed top-0 left-0 right-0 h-[60px] md:h-[70px] flex justify-between items-center text-white bg-blue-400">
+    <nav className="z-[100] px-2 lg:px-6 fixed top-0 left-0 right-0 h-[60px] md:h-[70px] flex justify-between items-center text-white bg-blue-400">
       <Link
         to="/"
         className="text-2xl md:text-xl lg:text-3xl font-bold md:mr-2"

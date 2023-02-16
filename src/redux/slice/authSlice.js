@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoggedin: false,
-  userEmail: null,
-  userId: null,
+  user: null,
 };
 
 const authSlice = createSlice({
@@ -11,21 +9,17 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     ACTIVE_USER: (state, action) => {
-      const { userEmail, userId } = action.payload;
-      state.isLoggedin = true;
-      state.userEmail = userEmail;
-      state.userId = userId;
+      state.user = action.payload;
+      localStorage.setItem("shoppersUser", JSON.stringify(state.user));
     },
     USER_LOGOUT: (state, action) => {
-      state.isLoggedin = false;
-      state.userEmail = null;
-      state.userId = null;
+      state.user = null;
+      localStorage.setItem("shoppersUser", null);
     },
   },
 });
 
 export const { ACTIVE_USER, USER_LOGOUT } = authSlice.actions;
-export const selectIsLoggedin = (state) => state.auth.isLoggedin;
-export const selectUserEmail = (state) => state.auth.userEmail;
-export const selectUserId = (state) => state.auth.userId;
+export const selectUser = (state) => state.auth.user;
+
 export default authSlice.reducer;

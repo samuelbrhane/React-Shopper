@@ -4,10 +4,10 @@ const Create = ({
   handleChange,
   handleSubmit,
   handleCheck,
-  setImageFile,
   inputData,
   categories,
   checkedState,
+  imageChange,
 }) => {
   return (
     <form onSubmit={handleSubmit} className="mt-4 w-[300px]">
@@ -44,12 +44,7 @@ const Create = ({
           value={inputData.type}
           onChange={handleChange}
         />
-        <input
-          type="file"
-          required
-          multiple={true}
-          onChange={(e) => setImageFile(e.target.files)}
-        />
+        <input type="file" required multiple={true} onChange={imageChange} />
         <p className="font-bold">Select Categories</p>
         <div className="grid grid-cols-2 gap-1">
           {categories.map((category, index) => {

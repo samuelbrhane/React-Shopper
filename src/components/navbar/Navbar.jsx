@@ -3,8 +3,6 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import RightBtns from "./RightBtn";
 import NavLinks from "./NavLinks";
 import CartContent from "./CartContent";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { ACTIVE_USER } from "../../redux/slice/authSlice";
 import { Link } from "react-router-dom";
@@ -16,10 +14,9 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) dispatch(ACTIVE_USER({ email: user.email }));
-      setLoading(false);
-    });
+    const user = JSON.parse(localStorage.getItem("shoppersUser"));
+    dispatch(ACTIVE_USER(user));
+    setLoading(false);
   }, [dispatch]);
 
   if (loading) return <Loader />;

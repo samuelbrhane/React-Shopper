@@ -24,7 +24,7 @@ const AdminLogin = () => {
       email === adminInfo?.data().email &&
       password === adminInfo?.data().password
     ) {
-      dispatch(ACTIVE_USER({ email: adminInfo?.data().email }));
+      dispatch(ACTIVE_USER({ email }));
       navigate("/dashboard");
     } else {
       toast.error("Wrong Credentials.", toastOption);

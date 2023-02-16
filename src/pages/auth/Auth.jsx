@@ -13,6 +13,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { Loader, Navbar, Title } from "../../components";
+import { useDispatch } from "react-redux";
+import { ACTIVE_USER } from "../../redux/slice/authSlice";
 
 const Auth = ({ register }) => {
   const [inputData, setInputData] = useState({
@@ -22,6 +24,7 @@ const Auth = ({ register }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
@@ -50,6 +53,7 @@ const Auth = ({ register }) => {
         .then((userCredential) => {
           toast.success("User Login Successfully!", toastOption);
           setIsLoading(false);
+          dispatch(ACTIVE_USER({ email: userCredential.user.email }));
           navigate("/");
         })
         .catch((error) => {
@@ -67,6 +71,7 @@ const Auth = ({ register }) => {
           .then((userCredential) => {
             toast.success("User Register Successfully!", toastOption);
             setIsLoading(false);
+            dispatch(ACTIVE_USER({ email: userCredential.user.email }));
             navigate("/login");
           })
           .catch((error) => {
@@ -86,6 +91,8 @@ const Auth = ({ register }) => {
       .then((result) => {
         // const user = result.user;
         toast.success("User Login Successfully!", toastOption);
+
+        dispatch(ACTIVE_USER({ email: result.user.email }));
         navigate("/");
       })
       .catch((error) => {

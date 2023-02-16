@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { Create, Navbar, Title } from "../components";
+import React, { useEffect, useState } from "react";
+import { Create, Loader, Navbar, Title } from "../components";
+import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 const categories = [
   "Home",
   "New Arrival",
@@ -11,7 +14,10 @@ const categories = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const [userLogin, setUserLogin] = useState(null);
   const [imageFile, setImageFile] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [inputData, setInputData] = useState({
     name: "",
     oldPrice: "",
@@ -34,6 +40,23 @@ const Dashboard = () => {
       checkedState.map((item, index) => (index === position ? !item : item))
     );
   };
+
+  useEffect(() => {
+    const getAdmin = async () => {
+      getDoc(doc(db, "admin", process.env.REACT_APP_ADMIN_ID)).then((res) => {
+        const user = JSON.parse(localStorage.getItem("shoppersUser"));
+        if (res.data().email !== user?.email) {
+          navigate("/admin/login");
+        } else {
+          setUserLogin(res.data());
+        }
+      });
+      setLoading(false);
+    };
+    getAdmin();
+  }, [navigate]);
+
+  if (loading || !userLogin) return <Loader />;
 
   return (
     <div>

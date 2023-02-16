@@ -4,15 +4,31 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toastOption } from "../utils/toastOptions";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
+import { useDispatch } from "react-redux";
+import { ACTIVE_USER } from "../redux/slice/authSlice";
 
 const AdminLogin = () => {
   const [inputData, setInputData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    const { email, password } = inputData;
     e.preventDefault();
-    navigate("/dashboard");
-    toast.error("Something Went Wrong.", toastOption);
+    const adminInfo = await getDoc(
+      doc(db, "admin", process.env.REACT_APP_ADMIN_ID)
+    );
+    if (
+      email === adminInfo?.data().email &&
+      password === adminInfo?.data().password
+    ) {
+      dispatch(ACTIVE_USER({ email: adminInfo?.data().email }));
+      navigate("/dashboard");
+    } else {
+      toast.error("Wrong Credentials.", toastOption);
+    }
   };
 
   return (

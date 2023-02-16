@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import {
   Home,
   Orders,
@@ -26,8 +25,6 @@ const App = () => {
         <Route path="/category/:id" element={<Category />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin/login" element={<AdminLogin />} />
-        {/* <Route path="/profile" element={<ProtectRoute />}>  
-          </Route> */}
       </Routes>
     </BrowserRouter>
   );

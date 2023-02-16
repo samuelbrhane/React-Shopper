@@ -7,6 +7,7 @@ import Categories from "./Categories";
 import Title from "./Title";
 import Filters from "./Filters";
 import CategoryProducts from "./CategoryProducts";
+import Create from "./Create";
 
 export {
   Navbar,
@@ -18,4 +19,5 @@ export {
   Title,
   Filters,
   CategoryProducts,
+  Create,
 };

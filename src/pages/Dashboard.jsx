@@ -7,15 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const categories = [
-  "Home",
-  "New Arrival",
-  "Special Sell",
-  "Women",
-  "Men",
-  "Children",
-  "Accessories",
-];
+const categories = ["New Arrival", "Special Sell", "Women", "Men", "Children"];
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -23,10 +15,11 @@ const Dashboard = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [inputData, setInputData] = useState({
-    name: "",
+    vendor: "",
     oldPrice: "",
     currentPrice: "",
     type: "",
+    description: "",
   });
   const [checkedState, setCheckedState] = useState(
     new Array(categories.length).fill(false)
@@ -109,7 +102,6 @@ const Dashboard = () => {
 
     checkedState?.map((state, index) => {
       if (state === true) {
-        console.log("index", categories.at(index));
         category.push(categories.at(index));
       }
     });
@@ -120,7 +112,15 @@ const Dashboard = () => {
       timestamp: new Date().getTime(),
     };
     await addDoc(collection(db, "products"), formData);
-    setInputData({ name: "", oldPrice: "", currentPrice: "", type: "" });
+    setInputData({
+      vendor: "",
+      oldPrice: "",
+      currentPrice: "",
+      type: "",
+      description: "",
+    });
+    setCheckedState(new Array(categories.length).fill(false));
+    setImages([]);
     setLoading(false);
   };
 

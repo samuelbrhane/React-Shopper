@@ -11,15 +11,16 @@ const Create = ({
 }) => {
   return (
     <form onSubmit={handleSubmit} className="mt-4 w-[300px]">
-      <div className="authInputs">
+      <div className="authInputs !gap-2">
         <input
           type="text"
-          placeholder="Name"
-          name="name"
+          placeholder="Vendor"
+          name="vendor"
           required
-          value={inputData.name}
+          value={inputData.vendor}
           onChange={handleChange}
         />
+
         <input
           type="number"
           placeholder="Old Price"
@@ -45,6 +46,13 @@ const Create = ({
           onChange={handleChange}
         />
         <input type="file" required multiple={true} onChange={imageChange} />
+        <textarea
+          value={inputData.description}
+          onChange={handleChange}
+          name="description"
+          placeholder="Description"
+          className="outline-none rounded border-2 border-[#a3c34a] py-2 px-4"
+        ></textarea>
         <p className="font-bold">Select Categories</p>
         <div className="grid grid-cols-2 gap-1">
           {categories.map((category, index) => {

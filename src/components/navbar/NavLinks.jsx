@@ -6,7 +6,6 @@ const links = [
   "Women",
   "Men",
   "Children",
-  "Accessories",
 ];
 
 const NavLinks = ({ direction }) => (

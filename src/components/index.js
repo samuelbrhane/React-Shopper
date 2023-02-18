@@ -8,6 +8,7 @@ import Title from "./Title";
 import Filters from "./Filters";
 import CategoryProducts from "./CategoryProducts";
 import Create from "./Create";
+import Pagination from "./Pagination";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   Filters,
   CategoryProducts,
   Create,
+  Pagination,
 };

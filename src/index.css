@@ -22,7 +22,7 @@
   }
 
   .authInputs input {
-    @apply text-lg outline-none rounded border-2 border-[#a3c34a] py-2 px-4;
+    @apply outline-none rounded border-2 border-[#a3c34a] py-2 px-4;
   }
 
   .sliderImage.active {

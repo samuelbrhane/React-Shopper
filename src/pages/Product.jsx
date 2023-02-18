@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Footer, Title, Loader } from "../components";
-import { data } from "../data";
 import { BsArrowBarRight } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router-dom";

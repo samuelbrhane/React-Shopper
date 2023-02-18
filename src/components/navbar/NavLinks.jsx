@@ -1,13 +1,5 @@
 import { NavLink } from "react-router-dom";
-const links = [
-  "Home",
-  "New Arrival",
-  "Special Sell",
-  "Women",
-  "Men",
-  "Children",
-];
-
+import links from "../../utils/links";
 const NavLinks = ({ direction }) => (
   <div
     className={`flex items-center ${

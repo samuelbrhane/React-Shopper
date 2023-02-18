@@ -13,7 +13,7 @@ const products = [
 
 const Filters = () => {
   return (
-    <div className="md:fixed md:bottom-[55px]  md:top-[80px] flex  flex-col gap-2  bg-white z-50 px-4 md:w-[250px]">
+    <div className="md:fixed md:bottom-[55px]  md:top-[80px] flex  flex-col gap-2  bg-white z-50 px-4 md:w-[300px]">
       <div>
         <h2 className="mb-1 font-bold text-lg md:text-xl">Category Products</h2>
         {products.map((product, index) => (

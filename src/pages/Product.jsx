@@ -1,10 +1,29 @@
-import React from "react";
-import { Navbar, Footer, Title } from "../components";
+import React, { useEffect, useState } from "react";
+import { Navbar, Footer, Title, Loader } from "../components";
 import { data } from "../data";
 import { BsArrowBarRight } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const Product = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      const docRef = doc(db, "products", id);
+      const docSnap = await getDoc(docRef);
+      setProduct(docSnap?.data());
+      setLoading(false);
+    };
+    fetchProduct();
+  }, [id]);
+
+  if (loading) return <Loader />;
+
   return (
     <div>
       <Navbar />
@@ -12,13 +31,13 @@ const Product = () => {
         <div className="flex mb-4 gap-4 lg:w-[55%] lg:h-[calc(85vh)]">
           <div className="w-[40%] grid grid-rows-2 gap-4">
             <img
-              src={`${data[5].image[0]}`}
+              src={product?.imageUrls[1]}
               alt="product"
               className="w-full rounded h-full"
             />
 
             <img
-              src={`${data[5].image[1]}`}
+              src={product?.imageUrls[0]}
               alt="product"
               className="w-full rounded h-full"
             />
@@ -26,7 +45,7 @@ const Product = () => {
 
           <div className="w-[60%]">
             <img
-              src={`${data[5].image[0]}`}
+              src={product?.imageUrls[1]}
               alt="product"
               className="w-full h-full rounded"
             />
@@ -35,23 +54,13 @@ const Product = () => {
         <div className="lg:w-[45%]">
           <Title title="Suit" />
           <h2 className="mb-2 flex items-center gap-1 text-[(6, 87, 26)]">
-            Price: <span className="line-through">$34</span> <BsArrowBarRight />{" "}
-            $23
+            Price: <span className="line-through">${product?.oldPrice}</span>{" "}
+            <BsArrowBarRight /> ${product?.currentPrice}
           </h2>
           <p className="mb-2 text-[13px] md:text-[15px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
-            dolores eaque eum reprehenderit incidunt excepturi explicabo
-            voluptate a neque perferendis adipisci doloremque voluptas repellat
-            non, beatae quisquam deleniti nobis placeat, nemo pariatur facere
-            nihil consectetur in.
+            {product?.description}
           </p>
-          <p className="mb-2 text-[13px] md:text-[15px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-            ducimus libero maxime eaque, sit consequuntur cupiditate quis
-            nostrum architecto ratione maiores magnam, qui consectetur a
-            mollitia commodi repudiandae! Modi assumenda aperiam consequuntur
-            qui optio, voluptate soluta ab.
-          </p>
+
           <div className="flex items-center mt-2 gap-1">
             <button className="px-1 text-blue-500 text-xl rounded-sm">-</button>
             <p className="pt-1 text-lg">1</p>
@@ -63,13 +72,18 @@ const Product = () => {
 
           <div className="mt-4 text-lg">
             <p>
-              Vendor: <span className="font-light">Polo</span>
+              Vendor: <span className="font-light">{product?.vendor}</span>
             </p>
             <p className="my-1">
-              Product-Type: <span className="font-light">Suit</span>
+              Product-Type: <span className="font-light">{product?.type}</span>
             </p>
             <p>
-              Tags: <span className="font-light">Men's,Suit,New Arrival</span>
+              Tags:{" "}
+              {product?.category?.map((item, index) => (
+                <span className="font-light" key={index}>
+                  {item}{" "}
+                </span>
+              ))}
             </p>
           </div>
           <div className="mt-4 border-t-[3px] border-[#234354] pt-2">

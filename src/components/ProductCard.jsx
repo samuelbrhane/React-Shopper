@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ data, id }) => {
   const { imageUrls, oldPrice, currentPrice, vendor, type } = data;
 
   return (
     <div className="flex justify-center">
-      <div className="w-full">
+      <Link to={`/product/${id}`} className="w-full cursor-pointer">
         <div className="w-full h-[350px] relative group">
           <img
             src={imageUrls[0]}
@@ -27,7 +29,7 @@ const ProductCard = ({ data, id }) => {
             <p className="text-blue-500">${currentPrice}</p>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import {
   Title,
   Footer,
   Pagination,
+  Loader,
 } from "../components";
 import discount from "../assets/discountOffer.jpg";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
@@ -14,6 +15,7 @@ import { db } from "../firebase/config";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentTrendingPage, setCurrentTrendingPage] = useState(1);
   const [currentFeaturedPage, setCurrentFeaturedPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(10);
@@ -26,6 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       const docsRef = collection(db, "products");
       const q = query(docsRef, orderBy("timestamp", "desc"));
       const docSnap = await getDocs(q);
@@ -37,9 +40,12 @@ const Home = () => {
         });
       });
       setProducts(products);
+      setLoading(false);
     };
     fetchProducts();
   }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <section>

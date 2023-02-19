@@ -1,12 +1,18 @@
 import React from "react";
 import { Navbar, Title, Footer } from "../components";
-import { data } from "../data";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCartItems } from "../redux/slice/productSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCartItems,
+  INCREASE_AMOUNT,
+  DECREASE_AMOUNT,
+  REMOVE_PRODUCT,
+  REMOVE_PRODUCTS,
+} from "../redux/slice/productSlice";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   let totalAmount = 0;
   cartItems.map((item) => {
@@ -17,51 +23,77 @@ const Cart = () => {
       <Navbar />
       <div className="mt-[80px] flex flex-col md:flex-row min-h-[85vh] gap-4 px-2 md:px-8 lg:px-12">
         <div className="md:w-[70%]">
-          <div className="flex items-end justify-between py-1 px-2">
-            <h1 className="text-xl font-bold md:text-2xl">Your Cart</h1>
-            <h2 className="">3 Items</h2>
-          </div>
-          <div className="">
-            <div className="grid text-sm text-gray-400 grid-cols-4 uppercase text-center border-y-2">
-              <p className="border-x-2">Product</p>
-              <p className="border-r-2">Quantity</p>
-              <p className="border-r-2">Price</p>
-              <p className="border-r-2">Total</p>
-            </div>
-            <div className="mt-2">
-              {cartItems.map((item) => {
-                return (
-                  <div
-                    className="mb-1 shadow grid grid-cols-4 text-center"
-                    key={item?.id}
-                  >
-                    <img
-                      src={`${item?.data?.imageUrls[0]}`}
-                      alt="item"
-                      className="rounded w-full h-[120px] md:h-[150px] lg:h-[200px]"
-                    />
+          {cartItems.length > 0 ? (
+            <>
+              <div className="flex items-end justify-between py-1 px-2">
+                <h1 className="text-xl font-bold md:text-2xl">Your Cart</h1>
+                <h2 className="">3 Items</h2>
+              </div>
+              <div className="">
+                <div className="grid text-sm text-gray-400 grid-cols-4 uppercase text-center border-y-2">
+                  <p className="border-x-2">Product</p>
+                  <p className="border-r-2">Quantity</p>
+                  <p className="border-r-2">Price</p>
+                  <p className="border-r-2">Total</p>
+                </div>
+                <div className="mt-2">
+                  {cartItems.map((item) => {
+                    return (
+                      <div
+                        className="mb-1 shadow grid grid-cols-4 text-center"
+                        key={item?.id}
+                      >
+                        <img
+                          src={`${item?.data?.imageUrls[0]}`}
+                          alt="item"
+                          className="rounded w-full h-[120px] md:h-[150px] lg:h-[200px]"
+                        />
 
-                    <div className="flex justify-center mt-2">
-                      <p className="px-2 text-blue-400 font-bold cursor-pointer">
-                        -
-                      </p>
-                      <p>{item?.amount}</p>
-                      <p className="px-2 text-blue-400 font-bold cursor-pointer">
-                        +
-                      </p>
-                    </div>
-                    <p className="pt-2 text-sm">${item.newPrice}</p>
-                    <div className="flex flex-col justify-between pr-2">
-                      <p className="pt-2 text-sm">${item?.data.currentPrice}</p>
-                      <button className="rounded px-4 py-1 bg-red-500 text-sm mb-2 text-white font-bold">
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+                        <div className="flex justify-center mt-2">
+                          <p
+                            className="px-2 text-blue-400 font-bold cursor-pointer"
+                            onClick={() => dispatch(DECREASE_AMOUNT(item?.id))}
+                          >
+                            -
+                          </p>
+                          <p>{item?.amount}</p>
+                          <p
+                            className="px-2 text-blue-400 font-bold cursor-pointer"
+                            onClick={() => dispatch(INCREASE_AMOUNT(item?.id))}
+                          >
+                            +
+                          </p>
+                        </div>
+                        <p className="pt-2 text-sm">${item.newPrice}</p>
+                        <div className="flex flex-col justify-between pr-2">
+                          <p className="pt-2 text-sm">
+                            ${item?.data.currentPrice}
+                          </p>
+                          <button
+                            className="rounded px-4 py-1 bg-red-500 text-sm mb-2 text-white font-bold"
+                            onClick={() => dispatch(REMOVE_PRODUCT(item?.id))}
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <button
+                className="my-4 w-[200px] py-2 bg-red-500 rounded text-white font-bold"
+                onClick={() => dispatch(REMOVE_PRODUCTS())}
+              >
+                Clear Cart
+              </button>
+            </>
+          ) : (
+            <p className="font-bold text-xl md:text-2xl mt-4">
+              Your Cart Is Empty.
+            </p>
+          )}
+
           <div className="mt-6 mb-4">
             <Link
               to="/"

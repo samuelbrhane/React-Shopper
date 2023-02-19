@@ -27,11 +27,13 @@ const productSlice = createSlice({
       });
     },
     DECREASE_AMOUNT: (state, action) => {
-      state.cartItems = state.cartItems.map((item) => {
-        if (item.id === action.payload)
-          return { ...item, amount: item.amount - 1 };
-        return item;
-      });
+      state.cartItems = state.cartItems
+        .map((item) => {
+          if (item.id === action.payload)
+            return { ...item, amount: item.amount - 1 };
+          return item;
+        })
+        .filter((item) => item.amount > 0);
     },
     REMOVE_PRODUCT: (state, action) => {
       state.cartItems = state.cartItems.filter(

@@ -1,20 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  categoryProducts: null,
+  cartItems: [],
 };
 
 const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    SET_PRODUCTS: (state, action) => {
-      state.categoryProducts = action.payload;
+    ADD_PRODUCT: (state, action) => {
+      const findProduct = state.cartItems.find(
+        (item) => item.id === action.payload.id
+      );
+      if (!findProduct) {
+        state.cartItems = [
+          ...state.cartItems,
+          { ...action.payload, amount: 1 },
+        ];
+      }
     },
   },
 });
 
-export const { SET_PRODUCTS } = productSlice.actions;
-export const selectCategoryProducts = (state) => state.product.categoryProducts;
+export const { ADD_PRODUCT } = productSlice.actions;
+export const selectCartItems = (state) => state.product.cartItems;
 
 export default productSlice.reducer;

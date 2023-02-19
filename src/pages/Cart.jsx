@@ -3,8 +3,15 @@ import { Navbar, Title, Footer } from "../components";
 import { data } from "../data";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../redux/slice/productSlice";
 
 const Cart = () => {
+  const cartItems = useSelector(selectCartItems);
+  let totalAmount = 0;
+  cartItems.map((item) => {
+    totalAmount += +item.data.currentPrice * item.amount;
+  });
   return (
     <>
       <Navbar />
@@ -22,14 +29,14 @@ const Cart = () => {
               <p className="border-r-2">Total</p>
             </div>
             <div className="mt-2">
-              {data.slice(0, 4).map((item) => {
+              {cartItems.map((item) => {
                 return (
                   <div
                     className="mb-1 shadow grid grid-cols-4 text-center"
-                    key={item.id}
+                    key={item?.id}
                   >
                     <img
-                      src={`${item.image[0]}`}
+                      src={`${item?.data?.imageUrls[0]}`}
                       alt="item"
                       className="rounded w-full h-[120px] md:h-[150px] lg:h-[200px]"
                     />
@@ -38,14 +45,14 @@ const Cart = () => {
                       <p className="px-2 text-blue-400 font-bold cursor-pointer">
                         -
                       </p>
-                      <p>5</p>
+                      <p>{item?.amount}</p>
                       <p className="px-2 text-blue-400 font-bold cursor-pointer">
                         +
                       </p>
                     </div>
                     <p className="pt-2 text-sm">${item.newPrice}</p>
                     <div className="flex flex-col justify-between pr-2">
-                      <p className="pt-2 text-sm">$100</p>
+                      <p className="pt-2 text-sm">${item?.data.currentPrice}</p>
                       <button className="rounded px-4 py-1 bg-red-500 text-sm mb-2 text-white font-bold">
                         Remove
                       </button>
@@ -67,13 +74,13 @@ const Cart = () => {
         <div className="md:w-[30%] h-[85vh] bg-gray-100 pt-2 px-8 mb-4">
           <Title title="Order History" />
           <div className="flex items-center justify-between py-2 mt-3 border-b-2">
-            <h2>Items 3</h2>
-            <h3 className="font-bold">$435.6</h3>
+            <h2>Items {cartItems.length}</h2>
+            <h3 className="font-bold">${totalAmount.toFixed(2)}</h3>
           </div>
           <div className="mt-1">
             <h3>Shipping</h3>
             <p className="my-2 bg-black text-white py-2 px-4 rounded-sm">
-              Standard Delivery - $5.00
+              Standard Delivery - $6.50
             </p>
           </div>
           <div className="py-6">
@@ -89,7 +96,7 @@ const Cart = () => {
           </div>
           <div className="flex items-center justify-between my-8 border-b-2 pb-2">
             <h3>Total Cost</h3>
-            <p className="font-bold">$464.54</p>
+            <p className="font-bold">${(totalAmount + 6.5).toFixed(2)}</p>
           </div>
           <button className="w-full py-2 text-lg text-white rounded bg-blue-400">
             Checkout

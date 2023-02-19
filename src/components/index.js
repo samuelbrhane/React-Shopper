@@ -5,7 +5,6 @@ import Slider from "./Slider";
 import ProductCard from "./ProductCard";
 import Categories from "./Categories";
 import Title from "./Title";
-
 import CategoryProducts from "./CategoryProducts";
 import Create from "./Create";
 import Pagination from "./Pagination";

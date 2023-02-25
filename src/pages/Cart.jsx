@@ -10,6 +10,10 @@ import {
   REMOVE_PRODUCT,
   REMOVE_PRODUCTS,
 } from "../redux/slice/productSlice";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+import { auth } from "../firebase/config";
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -18,6 +22,30 @@ const Cart = () => {
   cartItems.map((item) => {
     totalAmount += +item.data.currentPrice * item.amount;
   });
+
+  const createCheckoutSession = async () => {
+    const stripe = await stripePromise;
+    const checkoutSession = await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/create-checkout-session`,
+      {
+        cartItems,
+        email: auth?.currentUser?.email,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`,
+        },
+      }
+    );
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+
+    if (result.error) {
+      alert(result.error.message);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -64,10 +92,12 @@ const Cart = () => {
                             +
                           </p>
                         </div>
-                        <p className="pt-2 text-sm">${item.newPrice}</p>
+                        <p className="pt-2 text-sm">
+                          ${item.data.newPrice || item.data.currentPrice}
+                        </p>
                         <div className="flex flex-col justify-between pr-2">
                           <p className="pt-2 text-sm">
-                            ${item?.data.currentPrice}
+                            ${item?.data.currentPrice * item?.amount}
                           </p>
                           <button
                             className="rounded px-4 py-1 bg-red-500 text-sm mb-2 text-white font-bold"
@@ -130,7 +160,10 @@ const Cart = () => {
             <h3>Total Cost</h3>
             <p className="font-bold">${(totalAmount + 6.5).toFixed(2)}</p>
           </div>
-          <button className="w-full py-2 text-lg text-white rounded bg-blue-400">
+          <button
+            className="w-full py-2 text-lg text-white rounded bg-blue-400"
+            onClick={createCheckoutSession}
+          >
             Checkout
           </button>
         </div>

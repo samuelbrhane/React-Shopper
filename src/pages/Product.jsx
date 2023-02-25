@@ -5,8 +5,17 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  ADD_PRODUCT,
+  INCREASE_AMOUNT,
+  DECREASE_AMOUNT,
+  selectCartItems,
+} from "../redux/slice/productSlice";
 
 const Product = () => {
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,11 +24,12 @@ const Product = () => {
       setLoading(true);
       const docRef = doc(db, "products", id);
       const docSnap = await getDoc(docRef);
-      setProduct(docSnap?.data());
+      setProduct({ data: docSnap?.data(), id: docSnap?.id });
       setLoading(false);
     };
     fetchProduct();
   }, [id]);
+  const currentItem = cartItems.find((item) => item.id === product?.id);
 
   if (loading) return <Loader />;
 
@@ -30,13 +40,13 @@ const Product = () => {
         <div className="flex mb-4 gap-4 lg:w-[55%] lg:h-[calc(85vh)]">
           <div className="w-[40%] grid grid-rows-2 gap-4">
             <img
-              src={product?.imageUrls[1]}
+              src={product?.data?.imageUrls[1]}
               alt="product"
               className="w-full rounded h-full"
             />
 
             <img
-              src={product?.imageUrls[0]}
+              src={product?.data?.imageUrls[0]}
               alt="product"
               className="w-full rounded h-full"
             />
@@ -44,7 +54,7 @@ const Product = () => {
 
           <div className="w-[60%]">
             <img
-              src={product?.imageUrls[1]}
+              src={product?.data?.imageUrls[1]}
               alt="product"
               className="w-full h-full rounded"
             />
@@ -53,32 +63,52 @@ const Product = () => {
         <div className="lg:w-[45%]">
           <Title title="Suit" />
           <h2 className="mb-2 flex items-center gap-1 text-[(6, 87, 26)]">
-            Price: <span className="line-through">${product?.oldPrice}</span>{" "}
-            <BsArrowBarRight /> ${product?.currentPrice}
+            Price:{" "}
+            <span className="line-through">${product?.data?.oldPrice}</span>{" "}
+            <BsArrowBarRight /> ${product?.data?.currentPrice}
           </h2>
           <p className="mb-2 text-[13px] md:text-[15px]">
-            {product?.description}
+            {product?.data?.description}
           </p>
 
           <div className="flex items-center mt-2 gap-1">
-            <button className="px-1 text-blue-500 text-xl rounded-sm">-</button>
-            <p className="pt-1 text-lg">1</p>
-            <button className="px-1 text-blue-500 text-xl rounded-sm">+</button>
+            <button
+              className="px-1 text-blue-500 text-xl rounded-sm"
+              onClick={() => dispatch(DECREASE_AMOUNT(product?.id))}
+            >
+              -
+            </button>
+            <p className="pt-1 text-lg">
+              {currentItem?.amount > 0 ? currentItem?.amount : "1"}
+            </p>
+            <button
+              className="px-1 text-blue-500 text-xl rounded-sm"
+              onClick={() => dispatch(INCREASE_AMOUNT(product?.id))}
+            >
+              +
+            </button>
           </div>
-          <button className="mt-2 py-1 px-2 bg-blue-400 text-white font-bold rounded flex items-center gap-2 text-lg">
+          <button
+            className="mt-2 py-1 px-2 bg-blue-400 text-white font-bold rounded flex items-center gap-2 text-lg"
+            onClick={() => {
+              dispatch(ADD_PRODUCT({ ...product }));
+            }}
+          >
             <FaShoppingCart /> Add to Cart
           </button>
 
           <div className="mt-4 text-lg">
             <p>
-              Vendor: <span className="font-light">{product?.vendor}</span>
+              Vendor:{" "}
+              <span className="font-light">{product?.data?.vendor}</span>
             </p>
             <p className="my-1">
-              Product-Type: <span className="font-light">{product?.type}</span>
+              Product-Type:{" "}
+              <span className="font-light">{product?.data?.type}</span>
             </p>
             <p>
               Tags:{" "}
-              {product?.category?.map((item, index) => (
+              {product?.data?.category?.map((item, index) => (
                 <span className="font-light" key={index}>
                   {item}{" "}
                 </span>

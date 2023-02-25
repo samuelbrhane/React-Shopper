@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ADD_PRODUCT, selectCartItems } from "../redux/slice/productSlice";
+import { useDispatch } from "react-redux";
+import { ADD_PRODUCT } from "../redux/slice/productSlice";
 
 const ProductCard = ({ data, id }) => {
-  const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
   const [itemAdded, setItemAdded] = useState(false);
   const { imageUrls, oldPrice, currentPrice, vendor, type } = data;
-
-  console.log(cartItems);
   return (
     <div className="flex justify-center">
       <div className="w-full relative">

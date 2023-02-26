@@ -22,7 +22,7 @@ const Success = () => {
           </p>
           <div className="w-full  px-4 mt-4 mb-3">
             <Link to="/orders">
-              <button className="bg-yellow-400 hover:bg-yellow-500 w-full py-1">
+              <button className="bg-blue-400 text-white hover:bg-blue-500 w-full py-1">
                 Go To My Orders
               </button>
             </Link>

@@ -34,6 +34,9 @@ const Navbar = () => {
         <CartContent />
       </div>
 
+      <Link to="/orders" className="md:hidden">
+        Orders
+      </Link>
       <HiMenuAlt3
         className="z-40 text-2xl cursor-pointer md:hidden"
         onClick={() => setShowMenu(!showMenu)}
@@ -48,7 +51,9 @@ const Navbar = () => {
         <NavLinks />
       </div>
 
-      <Link to="/orders">Orders</Link>
+      <Link to="/orders" className="hidden md:inline">
+        Orders
+      </Link>
       <div className="hidden md:flex items-center">
         <div className="md:mr-6 lg:mr-10">
           <CartContent />

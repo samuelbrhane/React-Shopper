@@ -1,7 +1,12 @@
 import React from "react";
+import { Navbar } from "../components";
 
 const Orders = () => {
-  return <div>Order</div>;
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
 };
 
 export default Orders;

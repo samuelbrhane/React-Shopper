@@ -5,5 +5,15 @@ import Product from "./Product";
 import Category from "./Category";
 import Dashboard from "./Dashboard";
 import AdminLogin from "./AdminLogin";
+import Success from "./Success";
 
-export { Home, Orders, Cart, Product, Category, Dashboard, AdminLogin };
+export {
+  Home,
+  Orders,
+  Cart,
+  Product,
+  Category,
+  Dashboard,
+  AdminLogin,
+  Success,
+};

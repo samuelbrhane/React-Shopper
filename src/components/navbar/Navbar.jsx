@@ -25,7 +25,7 @@ const Navbar = () => {
     <nav className="z-[100] px-2 lg:px-6 fixed top-0 left-0 right-0 h-[60px] md:h-[70px] flex justify-between items-center text-white bg-blue-400">
       <Link
         to="/"
-        className="text-2xl md:text-xl lg:text-3xl font-bold md:mr-2"
+        className="text-2xl md:hidden lg:text-3xl lg:inline font-bold md:mr-2"
       >
         Shoppers
       </Link>
@@ -47,6 +47,8 @@ const Navbar = () => {
       <div className="hidden md:flex items-center">
         <NavLinks />
       </div>
+
+      <Link to="/orders">Orders</Link>
       <div className="hidden md:flex items-center">
         <div className="md:mr-6 lg:mr-10">
           <CartContent />

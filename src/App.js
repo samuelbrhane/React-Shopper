@@ -8,6 +8,7 @@ import {
   Product,
   AdminLogin,
   Dashboard,
+  Success,
 } from "./pages";
 import { Login, Reset, Register } from "./pages/auth";
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/category/:id" element={<Category />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   );

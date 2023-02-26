@@ -25,25 +25,29 @@ const Cart = () => {
 
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
-    const checkoutSession = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/api/create-checkout-session`,
-      {
-        cartItems,
-        email: auth?.currentUser?.email,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`,
+    const email = auth?.currentUser?.email;
+
+    if (email) {
+      const checkoutSession = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/create-checkout-session`,
+        {
+          cartItems,
+          email,
         },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`,
+          },
+        }
+      );
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: checkoutSession.data.id,
+      });
+
+      if (result.error) {
+        alert(result.error.message);
       }
-    );
-
-    const result = await stripe.redirectToCheckout({
-      sessionId: checkoutSession.data.id,
-    });
-
-    if (result.error) {
-      alert(result.error.message);
     }
   };
   return (

@@ -1,5 +1,8 @@
-import React from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Loader } from "./components";
+import { auth } from "./firebase/config";
 import {
   Home,
   Orders,
@@ -13,7 +16,21 @@ import {
 import { Login, Reset, Register } from "./pages/auth";
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("shoppersUser"));
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+  }, [user]);
+
+  if (loading) return <Loader />;
+
   return (
     <BrowserRouter>
       <Routes>

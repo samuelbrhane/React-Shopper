@@ -1,7 +1,7 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Loader, Navbar } from "../components";
-import { auth, db } from "../firebase/config";
+import { db } from "../firebase/config";
 import moment from "moment";
 
 const Orders = () => {

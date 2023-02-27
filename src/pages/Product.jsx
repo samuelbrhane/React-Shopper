@@ -61,7 +61,7 @@ const Product = () => {
           </div>
         </div>
         <div className="lg:w-[45%]">
-          <Title title="Suit" />
+          <Title title={product?.data?.type} />
           <h2 className="mb-2 flex items-center gap-1 text-[(6, 87, 26)]">
             Price:{" "}
             <span className="line-through">${product?.data?.oldPrice}</span>{" "}
